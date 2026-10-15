@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Lumeron.Desktop/Lumeron.Desktop.csproj" />
+  <Project Path="Lumeron.UI/Lumeron.UI.csproj" />
+</Solution>
