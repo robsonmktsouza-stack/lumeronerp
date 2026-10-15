@@ -1,12 +1,22 @@
-﻿<Window
+<Window x:Class="Lumeron.Desktop.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Lumeron.Desktop"
-        xmlns:UI="clr-namespace:Lumeron.UI;assembly=Lumeron.UI" x:Class="Lumeron.Desktop.MainWindow"
+        xmlns:ui="clr-namespace:Lumeron.UI;assembly=Lumeron.UI"
         mc:Ignorable="d"
-        Title="Lumeron - Gestão Empresarial" Height="800" Width="1280" MinWidth="1024">
+        Title="Lumeron - Gestão Empresarial"
+        Width="1280"
+        Height="800"
+        MinWidth="1024"
+        MinHeight="640"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource LumeronWindowBrush}"
+        Foreground="{DynamicResource LumeronTextBrush}"
+        FontFamily="Segoe UI"
+        FontSize="13"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True">
 
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
@@ -14,9 +24,103 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="28"/>
         </Grid.RowDefinitions>
-        <Border x:Name="RibbonContainer" BorderBrush="#FFC8CDD3" BorderThickness="0,1,0,1" Height="NaN" Background="#FFF7F7F7">
-            <UI:LumeronRibbon Margin="0,-1,0,-1"/>
+
+        <!-- Ribbon nativo: sem botoes, ate os modulos estarem prontos. -->
+        <Border x:Name="RibbonContainer"
+                Grid.Row="0"
+                Background="{DynamicResource LumeronRibbonBrush}"
+                BorderBrush="{DynamicResource LumeronBorderBrush}"
+                BorderThickness="0,0,0,1">
+            <ui:LumeronRibbon/>
+        </Border>
+
+        <!-- Futuras janelas internas serao abertas como abas aqui. -->
+        <Grid x:Name="WorkspaceContainer"
+              Grid.Row="1"
+              Background="{DynamicResource LumeronWindowBrush}">
+
+            <TabControl x:Name="WorkspaceTabs"
+                        Margin="14,12,14,12"
+                        Padding="0"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        ItemContainerStyle="{StaticResource LumeronWorkspaceTabStyle}">
+
+                <TabItem Header="Início">
+                    <Border Background="{DynamicResource LumeronPanelBrush}"
+                            BorderBrush="{DynamicResource LumeronBorderBrush}"
+                            BorderThickness="1">
+
+                        <Grid>
+                            <StackPanel HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        MaxWidth="440">
+
+                                <Image Source="/Lumeron.Desktop;component/Assets/LumeronLogo.png"
+                                       Width="340"
+                                       Height="88"
+                                       Stretch="Uniform"
+                                       RenderOptions.BitmapScalingMode="HighQuality"
+                                       AutomationProperties.Name="Logotipo do Lumeron"/>
+
+                                <TextBlock Text="Área de trabalho"
+                                           Margin="0,25,0,8"
+                                           FontSize="22"
+                                           FontWeight="SemiBold"
+                                           Foreground="{DynamicResource LumeronTextBrush}"
+                                           TextAlignment="Center"/>
+
+                                <TextBlock Text="Os módulos serão abertos nesta área conforme forem implementados."
+                                           FontSize="13"
+                                           LineHeight="21"
+                                           Foreground="{DynamicResource LumeronMutedBrush}"
+                                           TextAlignment="Center"
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+        <!-- Status fixo, independente das telas abertas. -->
+        <Border x:Name="StatusBarContainer"
+                Grid.Row="2"
+                Background="{DynamicResource LumeronStatusBrush}"
+                BorderBrush="{DynamicResource LumeronBorderBrush}"
+                BorderThickness="0,1,0,0">
+            <Grid Margin="16,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+                    <Ellipse Width="7"
+                             Height="7"
+                             Fill="{DynamicResource LumeronSuccessBrush}"
+                             Margin="0,0,8,0"/>
+                    <TextBlock Text="Pronto"
+                               FontSize="11"
+                               Foreground="{DynamicResource LumeronTextBrush}"/>
+                    <Border Width="1"
+                            Height="13"
+                            Background="{DynamicResource LumeronBorderBrush}"
+                            Margin="14,0"/>
+                    <TextBlock Text="Lumeron • Gestão Empresarial"
+                               FontSize="11"
+                               Foreground="{DynamicResource LumeronMutedBrush}"/>
+                </StackPanel>
+
+                <TextBlock Grid.Column="2"
+                           Text="Área de trabalho"
+                           VerticalAlignment="Center"
+                           FontSize="11"
+                           Foreground="{DynamicResource LumeronMutedBrush}"/>
+            </Grid>
         </Border>
     </Grid>
-
 </Window>

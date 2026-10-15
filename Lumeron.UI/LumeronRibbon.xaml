@@ -1,41 +1,39 @@
-﻿<UserControl x:Class="Lumeron.UI.LumeronRibbon"
+<UserControl x:Class="Lumeron.UI.LumeronRibbon"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Lumeron.UI"
              mc:Ignorable="d"
              d:DesignHeight="135"
              d:DesignWidth="1200">
 
     <Grid x:Name="RibbonLayout"
-          Background="#FFF7F7F7">
+          Background="#FFF7F9FC">
 
         <Ribbon x:Name="MainRibbon"
                 Loaded="MainRibbon_Loaded"
-                Background="#FFF7F7F7"
-                BorderThickness="0">
+                FontFamily="Segoe UI"
+                FontSize="12"
+                Background="#FFF7F9FC"
+                BorderThickness="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
 
-            <!-- Oculta o menu azul -->
+            <!-- Mantem apenas abas, sem area de menu de aplicativo. -->
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu Visibility="Collapsed"/>
             </Ribbon.ApplicationMenu>
 
-            <!-- Oculta a barra de acesso rápido -->
             <Ribbon.QuickAccessToolBar>
                 <RibbonQuickAccessToolBar Visibility="Collapsed"/>
             </Ribbon.QuickAccessToolBar>
 
-            <!-- Abas principais -->
             <RibbonTab Header="Início"/>
             <RibbonTab Header="Cadastros"/>
             <RibbonTab Header="Vendas"/>
             <RibbonTab Header="Estoque"/>
             <RibbonTab Header="Financeiro"/>
             <RibbonTab Header="Fiscal"/>
-
         </Ribbon>
-
     </Grid>
-
 </UserControl>
